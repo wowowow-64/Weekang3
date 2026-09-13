@@ -1,6 +1,8 @@
 {
-  "name": "Weekly Planner",
+  "name": "WeekWise3",
   "description": "An Android-style weekly planner app with day-by-day scheduling, time blocks, habit tracking, and task management.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

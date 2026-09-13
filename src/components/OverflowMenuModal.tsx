@@ -87,7 +87,7 @@ export const OverflowMenuModal: React.FC<OverflowMenuModalProps> = ({
 
           <div className="h-px bg-purple-500/15 my-1" />
 
-          {/* Toggle Android Device Frame */}
+          {/* Toggle Full Screen / Phone Bezel Frame */}
           <button
             type="button"
             onClick={() => {
@@ -101,9 +101,14 @@ export const OverflowMenuModal: React.FC<OverflowMenuModalProps> = ({
           >
             <div className="flex items-center gap-2.5">
               <Smartphone className="w-4 h-4 text-purple-500" />
-              <span>Android Phone Frame</span>
+              <div>
+                <span>{isFrameMode ? 'Switch to Full Screen' : 'Simulate Phone Bezel'}</span>
+                <p className="text-[10px] font-normal opacity-70">
+                  {isFrameMode ? 'Currently in phone bezel' : 'Currently edge-to-edge full screen'}
+                </p>
+              </div>
             </div>
-            {isFrameMode && <Check className="w-3.5 h-3.5 text-[#ad1ca8]" />}
+            {!isFrameMode && <Check className="w-3.5 h-3.5 text-[#ad1ca8]" />}
           </button>
 
           {/* Print / Export */}

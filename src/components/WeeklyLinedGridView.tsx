@@ -76,7 +76,9 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
     return (
       <div
         key={dateKey}
-        className={`w-full rounded-2xl overflow-hidden shadow-xs flex flex-col border transition-colors ${
+        className={`w-full rounded-2xl overflow-hidden shadow-xs flex flex-col border transition-all ${
+          isWeekend ? 'flex-1 min-h-[90px]' : 'flex-1 min-h-[150px]'
+        } ${
           isDarkMode
             ? 'bg-[#251a2d] border-[#44274c]'
             : 'bg-white border-black/5'
@@ -85,7 +87,7 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
         {/* Card Header Banner (soft purple banner matching sample) */}
         <div
           onClick={() => onOpenDayDetail(date)}
-          className={`px-3 py-1 flex items-center justify-between cursor-pointer select-none transition-colors ${
+          className={`px-3 py-1.5 flex items-center justify-between shrink-0 cursor-pointer select-none transition-colors ${
             isDarkMode
               ? 'bg-[#5e275e] hover:bg-[#6e306e] text-white'
               : 'bg-[#d58fd5] hover:bg-[#cf83cf]'
@@ -94,7 +96,7 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
         >
           {/* Day Name on Left */}
           <span
-            className={`font-extrabold text-[15px] tracking-tight ${
+            className={`font-extrabold text-[15px] sm:text-base tracking-tight ${
               isDarkMode ? 'text-white' : 'text-slate-900'
             }`}
           >
@@ -103,7 +105,7 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
 
           {/* Date on Right (e.g. "Oct 26") */}
           <span
-            className={`font-bold text-[15px] tracking-tight ${
+            className={`font-bold text-[15px] sm:text-base tracking-tight ${
               isDarkMode ? 'text-[#e9a9ea]' : 'text-[#6d1b6d]'
             }`}
           >
@@ -112,7 +114,7 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
         </div>
 
         {/* Card Interior: Ruled Lined Notebook Paper */}
-        <div className="flex-1 flex flex-col justify-between py-0.5">
+        <div className="flex-1 flex flex-col justify-between py-0.5 min-h-0">
           {Array.from({ length: lineCount }).map((_, idx) => {
             const item = dayItems[idx];
             const isEditing = activeEditingDay === dateKey && editingLineIndex === idx;
@@ -120,7 +122,7 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
             return (
               <div
                 key={idx}
-                className={`relative flex items-center px-2.5 h-[29px] sm:h-[31px] border-b transition-colors group cursor-text ${
+                className={`relative flex items-center px-2.5 flex-1 min-h-[25px] border-b transition-colors group cursor-text ${
                   isDarkMode
                     ? 'border-[#3a2542] hover:bg-white/5'
                     : 'border-[#ebd7ed] hover:bg-purple-50/40'
@@ -249,22 +251,22 @@ export const WeeklyLinedGridView: React.FC<WeeklyLinedGridViewProps> = ({
   };
 
   return (
-    <div className="w-full flex-1 p-2 sm:p-2.5 overflow-y-auto">
-      {/* 2-Column Grid exactly matching the sample screenshot */}
-      <div className="grid grid-cols-2 gap-2 sm:gap-2.5 items-start">
+    <div className="w-full flex-1 p-1.5 sm:p-2.5 overflow-y-auto flex flex-col min-h-0">
+      {/* 2-Column Grid stretching across the full screen */}
+      <div className="grid grid-cols-2 gap-1.5 sm:gap-2.5 flex-1 min-h-0 w-full items-stretch">
         {/* Column 1: Monday, Wednesday, Friday */}
-        <div className="flex flex-col gap-2 sm:gap-2.5">
+        <div className="flex flex-col gap-1.5 sm:gap-2.5 h-full min-h-0 flex-1">
           {renderDayCard(monday, false)}
           {renderDayCard(wednesday, false)}
           {renderDayCard(friday, false)}
         </div>
 
         {/* Column 2: Tuesday, Thursday, Saturday & Sunday */}
-        <div className="flex flex-col gap-2 sm:gap-2.5">
+        <div className="flex flex-col gap-1.5 sm:gap-2.5 h-full min-h-0 flex-1">
           {renderDayCard(tuesday, false)}
           {renderDayCard(thursday, false)}
 
-          {/* Saturday & Sunday split into two half-height cards */}
+          {/* Saturday & Sunday split into two half cards */}
           {renderDayCard(saturday, true)}
           {renderDayCard(sunday, true)}
         </div>

@@ -59,14 +59,13 @@ export default function App() {
     return false;
   });
 
-  // Android device frame preference
+  // Android device frame preference - default to false for full screen
   const [isFrameMode, setIsFrameMode] = useState<boolean>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem(STORAGE_KEYS.FRAME_MODE);
       if (saved !== null) return saved === 'true';
-      return window.innerWidth >= 640;
     }
-    return true;
+    return false;
   });
 
   // Modals state
