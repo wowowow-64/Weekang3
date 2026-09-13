@@ -15,9 +15,7 @@ import {
   getInitialWeeklyGoals, 
   getInitialHabits 
 } from './utils/sampleData';
-import { AndroidStatusBar } from './components/AndroidStatusBar';
 import { AndroidTopBar } from './components/AndroidTopBar';
-import { AndroidFrame } from './components/AndroidFrame';
 import { WeeklyLinedGridView } from './components/WeeklyLinedGridView';
 import { DailyView } from './components/DailyView';
 import { DatePickerModal } from './components/DatePickerModal';
@@ -30,7 +28,6 @@ const STORAGE_KEYS = {
   ITEMS: 'android_planner_items_v2',
   GOALS: 'android_planner_goals_v2',
   HABITS: 'android_planner_habits_v2',
-  FRAME_MODE: 'android_planner_frame_mode_v2',
   DARK_MODE: 'android_planner_dark_mode_v2',
 };
 
@@ -55,15 +52,6 @@ export default function App() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem(STORAGE_KEYS.DARK_MODE);
       return saved === 'true';
-    }
-    return false;
-  });
-
-  // Android device frame preference - default to false for full screen
-  const [isFrameMode, setIsFrameMode] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(STORAGE_KEYS.FRAME_MODE);
-      if (saved !== null) return saved === 'true';
     }
     return false;
   });
@@ -140,10 +128,6 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.DARK_MODE, String(isDarkMode));
   }, [isDarkMode]);
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.FRAME_MODE, String(isFrameMode));
-  }, [isFrameMode]);
 
   // Compute 7 days of the active week
   const weekDays = useMemo(() => {
@@ -277,10 +261,11 @@ export default function App() {
   };
 
   return (
-    <AndroidFrame isFrameMode={isFrameMode} isDarkMode={isDarkMode}>
-      {/* Android Status Bar (time, notifications, camera punch, wifi, battery) */}
-      <AndroidStatusBar isDarkMode={isDarkMode} />
-
+    <div
+      className={`w-full h-screen h-[100dvh] flex flex-col overflow-hidden transition-colors ${
+        isDarkMode ? 'bg-[#1e1324]' : 'bg-[#ebd3f0]'
+      }`}
+    >
       {/* Top App Bar with "< Sep 13" pill, 2026 calendar, search, moon, grid, note, title, menu */}
       <AndroidTopBar
         currentWeekStart={currentWeekStart}
@@ -361,15 +346,6 @@ export default function App() {
             />
           </div>
         )}
-
-        {/* Android Gesture Navigation Pill Bar at bottom */}
-        <div className="w-full py-1.5 flex justify-center shrink-0 select-none">
-          <div
-            className={`w-32 h-1 rounded-full transition-colors ${
-              isDarkMode ? 'bg-purple-900/60' : 'bg-slate-700/80'
-            }`}
-          />
-        </div>
       </main>
 
       {/* Date & Week Picker Modal */}
@@ -412,8 +388,6 @@ export default function App() {
         onJumpToToday={handleToday}
         onClearWeek={handleClearWeek}
         onResetSampleData={handleResetSampleData}
-        isFrameMode={isFrameMode}
-        onToggleFrameMode={() => setIsFrameMode(!isFrameMode)}
         isDarkMode={isDarkMode}
       />
 
@@ -425,6 +399,6 @@ export default function App() {
         initialItem={editingItem}
         presetDate={modalPresetDate}
       />
-    </AndroidFrame>
+    </div>
   );
 }

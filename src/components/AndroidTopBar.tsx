@@ -169,10 +169,10 @@ export const AndroidTopBar: React.FC<AndroidTopBarProps> = ({
           <FileText className="w-4 h-4 stroke-[2.2]" />
         </button>
 
-        {/* Two-line Title: "Weekly" / "Planner" */}
+        {/* Two-line Title: "WeekWise" / "3" */}
         <div className="flex flex-col text-left leading-none pl-0.5 select-none">
-          <span className="text-[11px] font-bold tracking-tight text-white/95">Weekly</span>
-          <span className="text-[11px] font-bold tracking-tight text-white">Planner</span>
+          <span className="text-[11px] font-bold tracking-tight text-white/95">WeekWise</span>
+          <span className="text-[11px] font-extrabold tracking-tight text-white">3</span>
         </div>
 
         {/* Overflow Menu (3 vertical dots) */}

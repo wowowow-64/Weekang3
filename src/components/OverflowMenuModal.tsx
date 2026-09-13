@@ -4,10 +4,7 @@ import {
   Calendar, 
   Trash2, 
   RefreshCw, 
-  Smartphone, 
   Printer, 
-  Info,
-  Check
 } from 'lucide-react';
 import { playClickSound } from '../utils/audio';
 
@@ -18,8 +15,6 @@ interface OverflowMenuModalProps {
   onJumpToToday: () => void;
   onClearWeek: () => void;
   onResetSampleData: () => void;
-  isFrameMode: boolean;
-  onToggleFrameMode: () => void;
   isDarkMode?: boolean;
 }
 
@@ -30,8 +25,6 @@ export const OverflowMenuModal: React.FC<OverflowMenuModalProps> = ({
   onJumpToToday,
   onClearWeek,
   onResetSampleData,
-  isFrameMode,
-  onToggleFrameMode,
   isDarkMode = false,
 }) => {
   if (!isOpen) return null;
@@ -86,30 +79,6 @@ export const OverflowMenuModal: React.FC<OverflowMenuModalProps> = ({
           </button>
 
           <div className="h-px bg-purple-500/15 my-1" />
-
-          {/* Toggle Full Screen / Phone Bezel Frame */}
-          <button
-            type="button"
-            onClick={() => {
-              playClickSound();
-              onToggleFrameMode();
-              onClose();
-            }}
-            className={`w-full px-3 py-2 rounded-xl flex items-center justify-between text-left transition ${
-              isDarkMode ? 'hover:bg-purple-900/40 text-purple-100' : 'hover:bg-purple-50 text-slate-700'
-            }`}
-          >
-            <div className="flex items-center gap-2.5">
-              <Smartphone className="w-4 h-4 text-purple-500" />
-              <div>
-                <span>{isFrameMode ? 'Switch to Full Screen' : 'Simulate Phone Bezel'}</span>
-                <p className="text-[10px] font-normal opacity-70">
-                  {isFrameMode ? 'Currently in phone bezel' : 'Currently edge-to-edge full screen'}
-                </p>
-              </div>
-            </div>
-            {!isFrameMode && <Check className="w-3.5 h-3.5 text-[#ad1ca8]" />}
-          </button>
 
           {/* Print / Export */}
           <button
