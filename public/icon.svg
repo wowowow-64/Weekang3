@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#312e81" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#grad)"/>
+  <g filter="url(#shadow)" transform="translate(96, 96)">
+    <!-- Calendar Body -->
+    <rect x="0" y="32" width="320" height="264" rx="40" fill="#ffffff" fill-opacity="0.95"/>
+    <!-- Calendar Header -->
+    <path d="M0 72 C0 49.9 17.9 32 40 32 L280 32 C302.1 32 320 49.9 320 72 L320 96 L0 96 Z" fill="#4f46e5"/>
+    <!-- Binders -->
+    <rect x="64" y="16" width="24" height="40" rx="12" fill="#1e1b4b"/>
+    <rect x="232" y="16" width="24" height="40" rx="12" fill="#1e1b4b"/>
+    <!-- Checkmark Badge -->
+    <circle cx="160" cy="180" r="60" fill="#10b981"/>
+    <path d="M136 180 L152 196 L186 162" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

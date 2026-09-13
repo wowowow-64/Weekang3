@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "Weekly Planner",
+  "short_name": "Planner",
+  "description": "An Android-style weekly planner app with day-by-day scheduling, time blocks, habit tracking, and task management.",
+  "theme_color": "#4f46e5",
+  "background_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
